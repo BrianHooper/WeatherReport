@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import json
-import urllib2
+import urllib.request
 import time
 
 class Forecast:
@@ -19,8 +19,8 @@ def getUrl(id):
 	return "http://api.openweathermap.org/data/2.5/forecast?id=" + str(id) + "&APPID=933f835cb1b6ada5fc2c27396d93d5b6"
 
 def downloadPage(url):
-	page = urllib2.urlopen(url)
-	return page.read()
+	with urllib.request.urlopen(url) as url:
+		return url.read()
 
 def readData(page):
 	data = json.loads(page)
